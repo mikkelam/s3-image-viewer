@@ -4,7 +4,7 @@ Simple utility to randomly shuffle the the newest images inserted into an S3 buc
 # requirements
 make sure to have aws credentials available. 
 
-Requirements should also be install `pip3 install -r requirements.txt`
+boto3 should be installed: `pip3 install -r requirements.txt`
 # Usage
 
 First, open `index.html` in your browser of choice.
