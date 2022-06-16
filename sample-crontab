@@ -1,0 +1,3 @@
+0 11 * * * python /home/user/s3-image-viewer/main.py -refresh --bucket my-bucket
+*/1 * * * * python /home/user/s3-image-viewer/main.py -show_random
+@reboot firefox -kiosk /home/user/s3-image-viewer/index.html

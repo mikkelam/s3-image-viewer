@@ -17,8 +17,13 @@ parser.add_argument(
     "-show-random", action="store_true", help="Show a random object. Save to show.jpeg"
 )
 
+TOP_N = 5000
 
-def find_newest_objects():
+
+SUPPORTED_EXTENSIONS = [".jpg", ".jpeg"]
+
+
+def find_newest_images():
     # find the most recently created objects in bucket
 
     paginator = client.get_paginator("list_objects_v2")
@@ -26,14 +31,16 @@ def find_newest_objects():
     objects = {}
     for idx, page in enumerate(result):
         for obj in page["Contents"]:
-            objects[obj["Key"]] = obj["LastModified"]
+            key = obj["Key"]
+            if key.endswith(SUPPORTED_EXTENSIONS):
+                objects[key] = obj["LastModified"]
     return objects
 
 
 def dump_objects(objects):
 
     # sort objects by value and return the keys
-    objects = sorted(objects.items(), key=lambda x: x[1], reverse=True)[:5000]
+    objects = sorted(objects.items(), key=lambda x: x[1], reverse=True)[:TOP_N]
     objects = [x[0] for x in objects]
     file_list.write_text("\n".join(objects))
 
