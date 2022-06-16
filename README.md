@@ -1,6 +1,12 @@
 # s3-image-viewer
 
 Simple utility to randomly shuffle the the newest images inserted into an S3 bucket (currently only jpeg is supported). 
+# requirements
+make sure to have aws crendentials available. 
+
+Requirements should also be install `pip3 install -r requirements.txt`
+# Usage
+
 
 First, launch firefox in kiosk mode:
 ```bash
