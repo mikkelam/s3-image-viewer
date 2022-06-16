@@ -25,3 +25,13 @@ python main.py -show_random
 ```
 
 `index.html` continually refreshes `show.jpeg`, so we should now see a new image
+
+
+# Kiosk mode on a raspberry pi 4
+install x11
+``` bash
+sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xinit
+```
+add `[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]]  && xinit /home/pi/s3-image-viewer/kiosk.sh -- vt$(fgconsole)` to your `~/.profile`. make sure the script path is correct.
+
+An example crontab has been included, this one auto-updates the file list every 24hrs and updates the img every minute

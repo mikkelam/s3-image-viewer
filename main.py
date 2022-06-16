@@ -10,9 +10,7 @@ client = boto3.client("s3")
 
 parser = argparse.ArgumentParser(description="Process some integers.")
 parser.add_argument("-refresh", action="store_true", help="Refresh the list of objects")
-parser.add_argument(
-    "--bucket", type=str, help="Bucket name", required="-refresh" in sys.argv
-)
+parser.add_argument("--bucket", type=str, help="Bucket name", required="true")
 parser.add_argument(
     "-show-random", action="store_true", help="Show a random object. Save to show.jpeg"
 )
@@ -45,7 +43,7 @@ def dump_objects(objects):
     file_list.write_text("\n".join(objects))
 
 
-def download_random_obj():
+def download_random_obj(bucket):
     objects = file_list.read_text()
     objects = objects.split("\n")
     obj = random.choice(objects)
@@ -54,9 +52,8 @@ def download_random_obj():
 
 if __name__ == "__main__":
     args = parser.parse_args()
-
+    bucket = args.bucket
     if args.refresh:
-        bucket = args.bucket
-        # dump_objects(find_newest_objects(bucket))
+        dump_objects(find_newest_images(bucket))
     elif args.show_random:
-        download_random_obj()
+        download_random_obj(bucket)
