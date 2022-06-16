@@ -4,8 +4,10 @@ from pathlib import Path
 import random
 import sys
 
+cur_dir = Path(__file__).parent
+show = cur_dir / "show.jpeg"
+file_list = cur_dir / "object_list.txt"
 
-file_list = Path(__file__).parent / "object_list.txt"
 client = boto3.client("s3")
 
 parser = argparse.ArgumentParser(description="Process some integers.")
@@ -47,7 +49,7 @@ def download_random_obj(bucket):
     objects = file_list.read_text()
     objects = objects.split("\n")
     obj = random.choice(objects)
-    client.download_file(bucket, obj, "show.jpeg")
+    client.download_file(bucket, obj, str(show))
 
 
 if __name__ == "__main__":
