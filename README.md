@@ -2,7 +2,7 @@
 
 Simple utility to randomly shuffle the the newest images inserted into an S3 bucket (currently only jpeg is supported). 
 # requirements
-make sure to have aws crendentials available. 
+make sure to have aws credentials available. 
 
 Requirements should also be install `pip3 install -r requirements.txt`
 # Usage
