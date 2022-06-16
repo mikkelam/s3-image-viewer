@@ -7,12 +7,7 @@ make sure to have aws credentials available.
 Requirements should also be install `pip3 install -r requirements.txt`
 # Usage
 
-
-First, launch firefox in kiosk mode:
-```bash
-firefox -kiosk index.html
-```
-
+First, open `index.html` in your browser of choice.
 
 To fetch the `N=5000` newest images.
 ```bash
@@ -21,10 +16,10 @@ python main.py -refresh --bucket my-bucket
 
 then, to update update the displayed image
 ```bash
-python main.py -show_random
+python main.py -show-random --bucket my-bucket
 ```
 
-`index.html` continually refreshes `show.jpeg`, so we should now see a new image
+`index.html` continually refreshes `show.jpeg`, so we should now be able to see the newly fetched image.
 
 # Kiosk mode on a raspberry pi 4
 install x11 and kiosk display utilities
