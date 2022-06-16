@@ -26,11 +26,12 @@ python main.py -show_random
 
 `index.html` continually refreshes `show.jpeg`, so we should now see a new image
 
-
 # Kiosk mode on a raspberry pi 4
-install x11
+install x11 and kiosk display utilities
 ``` bash
-sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xinit
+sudo apt update &&
+sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xinit  && 
+sudo apt-get install matchbox-window-manager xautomation unclutter
 ```
 add `[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]]  && xinit /home/pi/s3-image-viewer/kiosk.sh -- vt$(fgconsole)` to your `~/.profile`. make sure the script path is correct.
 
